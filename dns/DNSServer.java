@@ -67,7 +67,6 @@ public class DNSServer {
 
     /**
      * handle one incoming DNS query message
-     * TODO: complete me!
      *
      * @param   query   the DNS query message
      * @return          a DatagramPacket object with the response message
@@ -102,11 +101,11 @@ public class DNSServer {
 
         // if we didn't find the record, send to the next server (see nextServer and nextServerPort variables)
 
-        // TODO: print the response message contents
+        // print the response message contents
 	System.out.println("Forwarding Query to " + nextServer + ":" + nextServerPort);
 	System.out.println(query);
 
-        // TODO: store the query so we can respond to it when we get a reply
+        // store the query so we can respond to it when we get a reply
 	forwardedMessages.put(query.getID(), query);
 
         // TODO: make and return a new DatagramPacket query packet to forward
@@ -115,7 +114,6 @@ public class DNSServer {
 
     /**
      * handle one incoming DNS reply message
-     * TODO: complete me!
      *
      * @param   reply   the incoming reply message
      * @return          a DatagramPacket object with the response message
@@ -133,17 +131,17 @@ public class DNSServer {
 		return null;
 	}
 
-	// TODO: add answers to the cache
+	// add answers to the cache
 	cache.add(reply);
 
-        // TODO: remove the original query from the outstanding set
+        // remove the original query from the outstanding set
 	forwardedMessages.remove(query.getID());
 
-        // TODO: print the reply message again for consistency
+        // print the reply message again for consistency
 	System.out.println("Forwarding reply to " + query.getPacket().getSocketAddress());
 	System.out.println(reply);
 
-        // TODO: make and return a new response packet to send to the original client
+        // make and return a new response packet to send to the original client
 	return new DatagramPacket(reply.getData(), reply.getDataLength(), query.getPacket().getSocketAddress());
     }
 
